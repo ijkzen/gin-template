@@ -1,0 +1,26 @@
+kind: pipeline
+spec:
+  stages:
+    - name: build
+      spec:
+        platform:
+          arch: amd64
+          os: linux
+        steps:
+          - type: plugin
+            spec:
+              name: docker
+              inputs:
+                auto_tag: true
+                debug: true
+                dockerfile: Dockerfile
+                dry_run: "false"
+                force_tag: true
+                pull_image: false
+                purge: true
+                repo: 192.168.31.100:5000/ijkzen/template
+                launch_debug: true
+                insecure: true
+                registry: 192.168.31.100:5000
+      type: ci
+version: 2
