@@ -26,8 +26,8 @@ func init() {
 	} else {
 		path = dbFile
 	}
-
-	Database, err := gorm.Open(sqlite.Open(path+"?cache=shared&_busy_timeout=9999999&_synchronous=off"), &gorm.Config{
+	var err error
+	Database, err = gorm.Open(sqlite.Open(path+"?cache=shared&_busy_timeout=9999999&_synchronous=off"), &gorm.Config{
 		SkipDefaultTransaction: true,
 		PrepareStmt:            true,
 	})
