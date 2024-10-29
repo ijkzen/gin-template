@@ -27,9 +27,10 @@ func init() {
 		path = dbFile
 	}
 	var err error
-	Database, err = gorm.Open(sqlite.Open(path+"?cache=shared&_busy_timeout=9999999&_synchronous=off"), &gorm.Config{
+	Database, err = gorm.Open(sqlite.Open(path), &gorm.Config{
 		SkipDefaultTransaction: true,
 		PrepareStmt:            true,
+		Logger:                 &CustomDatabaseLogger{},
 	})
 	if err != nil {
 		log.Logger.Error(err.Error())
@@ -38,7 +39,7 @@ func init() {
 	db, err := Database.DB()
 	if err == nil {
 		db.SetMaxIdleConns(10)
-
+		db.Exec(`PRAGMA synchronous = OFF`)
 	}
 	Database.AutoMigrate(&model.TemplateModel{})
 }

@@ -19,10 +19,12 @@ func main() {
 	r.Use(ginzap.Ginzap(log.Logger, time.RFC3339, true))
 	r.Use(ginzap.RecoveryWithZap(log.Logger, true))
 	r.Use(cors.Default())
-	apiGroup := r.Group("api")
-	{
-		apiGroup.GET("/hello", api.Hello)
-	}
+	// apiGroup := r.Group("api")
+	// {
+		
+	// }
+	r.GET("/debug/statsviz/*filepath", api.StatsvizGraph)
+	r.NoRoute(api.Front)
 	pprof.Register(r)
 	r.Run(":4007")
 }
