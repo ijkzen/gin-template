@@ -3,6 +3,7 @@ module github.com/ijkzen/gin-template
 go 1.21.5
 
 require (
+	github.com/arl/statsviz v0.6.0
 	github.com/gin-contrib/cors v1.5.0
 	github.com/gin-contrib/pprof v1.4.0
 	github.com/gin-contrib/zap v0.2.0
@@ -15,7 +16,6 @@ require (
 
 require (
 	github.com/BurntSushi/toml v1.3.2 // indirect
-	github.com/arl/statsviz v0.6.0 // indirect
 	github.com/bytedance/sonic v1.10.2 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.1 // indirect
