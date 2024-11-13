@@ -1,6 +1,8 @@
 module github.com/ijkzen/gin-template
 
-go 1.21.5
+go 1.22.2
+
+toolchain go1.23.2
 
 require (
 	github.com/arl/statsviz v0.6.0
@@ -29,6 +31,7 @@ require (
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
+	github.com/ijkzen/gcron v0.0.0-20240503151831-3a894d391bef // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect

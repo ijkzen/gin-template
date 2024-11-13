@@ -1,4 +1,4 @@
-package api
+package statsviz
 
 import (
 	"net/http"
