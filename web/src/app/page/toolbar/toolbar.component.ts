@@ -5,6 +5,8 @@ import { StyleManagerService } from '../../service/style-manager.service';
 import { MatButtonModule } from '@angular/material/button';
 import { ProgressBarService } from '../../service/progress-bar.service';
 import { ToastService } from '../../service/toast.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 
 @Component({
@@ -21,7 +23,8 @@ export class ToolbarComponent {
   constructor(
     private styleManager: StyleManagerService,
     private progressBarService: ProgressBarService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private dialog: MatDialog
   ) {
 
   }
@@ -46,5 +49,14 @@ export class ToolbarComponent {
 
   showToast() {
     this.toastService.showToast("这是一个通知🥰")
+  }
+
+  showConfirmDialog() {
+    this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: '弹窗',
+        message: `这是一个弹窗`
+      }
+    })
   }
 }
