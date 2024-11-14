@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@use "app-theme";
 
 $theme: mat.define-theme((
   color: (
@@ -9,6 +10,7 @@ $theme: mat.define-theme((
 ));
 
 @include mat.color-variants-backwards-compatibility($theme);
+@include app-theme.theme($theme);
 
 :root {
   @include mat.all-component-themes($theme);

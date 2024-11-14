@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @use "@angular/material" as mat;
+@use "./styles/app-theme";
 
 @tailwind base;
 @tailwind components;
@@ -18,6 +19,7 @@ $theme: mat.define-theme(
 // Include material core styles.
 @include mat.core();
 @include mat.color-variants-backwards-compatibility($theme);
+@include app-theme.theme($theme);
 
 :root {
   @include mat.all-component-themes($theme);
