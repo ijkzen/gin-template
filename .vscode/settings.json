@@ -1,7 +1,9 @@
 {
   "git.ignoreLimitWarning": true,
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
-  "css.validate": false
+  "css.customData": [
+    ".vscode/tailwind.json",
+  ],
+  "scss.validate": false,
+  "css.lint.unknownProperties": "ignore",
+  "tailwindCSS.lint.invalidConfigPath": "ignore"
 }
