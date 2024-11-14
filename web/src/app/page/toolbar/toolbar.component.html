@@ -1,9 +1,25 @@
 <mat-toolbar>
-    <div (click)="switchTheme()">
-        @if (isDark) {
-        <mat-icon>sunny</mat-icon>
-        } @else {
-        <mat-icon>dark_mode</mat-icon>
-        }
+    <div class="w-full flex flex-row items-baseline justify-start gap-2">
+        <button mat-icon-button (click)="switchProgressBar()">
+            <mat-icon fontSet="material-symbols-sharp">home</mat-icon>
+        </button>
+
+        <span class="flex-1"></span>
+
+        <span (click)="switchTheme()">
+            @if (isDark) {
+            <button mat-icon-button>
+                <mat-icon fontSet="material-symbols-sharp">sunny</mat-icon>
+            </button>
+            } @else {
+            <button mat-icon-button>
+                <mat-icon fontSet="material-symbols-sharp">dark_mode</mat-icon>
+            </button>
+            }
+        </span>
+
+        <button mat-icon-button (click)="showToast()">
+            <mat-icon fontSet="material-symbols-sharp">person</mat-icon>
+        </button>
     </div>
 </mat-toolbar>

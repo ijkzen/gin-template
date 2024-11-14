@@ -51,6 +51,9 @@
                 "inject": false,
                 "input": "src/styles/azure-blue.scss",
                 "bundleName": "azure-blue"
+              },
+              {
+                "input": "material-symbols/index.scss"
               }
             ],
             "scripts": []

@@ -1,6 +1,8 @@
 <div class="w-screen h-screen">
   @if (showProgressBar) {
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  } @else {
+  <div class="w-full h-1"></div>
   }
   <router-outlet />
 </div>
