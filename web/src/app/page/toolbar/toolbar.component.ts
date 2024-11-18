@@ -7,12 +7,13 @@ import { ProgressBarService } from '../../service/progress-bar.service';
 import { ToastService } from '../../service/toast.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [MatToolbar, MatIconModule, MatButtonModule],
+  imports: [MatToolbar, MatIconModule, MatButtonModule, RouterLink],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })

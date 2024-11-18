@@ -1,1 +1,15 @@
-<p>admin works!</p>
+<nav mat-tab-nav-bar class="flex flex-row items-start justify-start app-navbar-header" mat-stretch-tabs="false" mat-align-tabs="start">
+   @for (router of routerList; track router.path) {
+        <a [routerLink]="router.path" mat-tab-link>{{ router.name }}</a>
+    }
+
+    <span class="flex-1"></span>
+
+    <a routerLink="/" class="pr-4">
+        <button mat-icon-button>
+            <mat-icon fontSet="material-symbols-sharp">home</mat-icon>
+        </button>
+    </a>
+</nav>
+
+<router-outlet></router-outlet>
