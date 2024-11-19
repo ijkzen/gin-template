@@ -27,7 +27,7 @@ export class ToolbarComponent {
     private toastService: ToastService,
     private dialog: MatDialog
   ) {
-
+    this.isDark = this.styleManager.isDark;
   }
 
   switchTheme() {

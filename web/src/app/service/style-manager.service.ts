@@ -7,10 +7,13 @@ import {Injectable} from '@angular/core';
  */
 @Injectable({providedIn: 'root'})
 export class StyleManagerService {
+
+  isDark = false;
   /**
    * Set the stylesheet with the specified key.
    */
   setStyle(key: string, href: string) {
+    this.isDark = true;
     getLinkElementForKey(key).setAttribute('href', href);
   }
 
@@ -18,6 +21,7 @@ export class StyleManagerService {
    * Remove the stylesheet with the specified key.
    */
   removeStyle(key: string) {
+    this.isDark = false;
     const existingLinkElement = getExistingLinkElementByKey(key);
     if (existingLinkElement) {
       document.head.removeChild(existingLinkElement);
