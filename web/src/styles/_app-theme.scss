@@ -6,5 +6,9 @@
     background: mat.get-theme-color($theme, surface);
   }
 
+  .app-foreground {
+    color: mat.get-theme-color($theme, on-surface);
+  }
+
   @include toolbar-theme.theme($theme);
 }
