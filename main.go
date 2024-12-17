@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/ijkzen/k8s-example/api/cron"
 	"github.com/ijkzen/k8s-example/api/front"
+	"github.com/ijkzen/k8s-example/api/hello"
 	"github.com/ijkzen/k8s-example/api/statsviz"
 	_ "github.com/ijkzen/k8s-example/cron"
 	_ "github.com/ijkzen/k8s-example/service/database"
@@ -22,6 +23,10 @@ func main() {
 	r.Use(ginzap.Ginzap(log.Logger, time.RFC3339, true))
 	r.Use(ginzap.RecoveryWithZap(log.Logger, true))
 	r.Use(cors.Default())
+
+	helloGroup := r.Group("hello")
+	helloGroup.GET("", hello.Hello)
+
 	apiGroup := r.Group("api")
 
 	cronGroup := apiGroup.Group("cron")
