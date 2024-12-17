@@ -7,12 +7,12 @@ import (
 	"github.com/gin-contrib/pprof"
 	ginzap "github.com/gin-contrib/zap"
 	"github.com/gin-gonic/gin"
-	"github.com/ijkzen/gin-template/api/cron"
-	"github.com/ijkzen/gin-template/api/front"
-	"github.com/ijkzen/gin-template/api/statsviz"
-	_ "github.com/ijkzen/gin-template/cron"
-	_ "github.com/ijkzen/gin-template/service/database"
-	"github.com/ijkzen/gin-template/service/log"
+	"github.com/ijkzen/k8s-example/api/cron"
+	"github.com/ijkzen/k8s-example/api/front"
+	"github.com/ijkzen/k8s-example/api/statsviz"
+	_ "github.com/ijkzen/k8s-example/cron"
+	_ "github.com/ijkzen/k8s-example/service/database"
+	"github.com/ijkzen/k8s-example/service/log"
 )
 
 func main() {

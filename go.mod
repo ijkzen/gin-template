@@ -1,4 +1,4 @@
-module github.com/ijkzen/gin-template
+module github.com/ijkzen/k8s-example
 
 go 1.22.2
 

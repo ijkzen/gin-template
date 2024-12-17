@@ -18,7 +18,7 @@ spec:
                 force_tag: true
                 pull_image: false
                 purge: true
-                repo: 192.168.31.100:5000/ijkzen/template
+                repo: 192.168.31.100:5000/ijkzen/k8s-example
                 launch_debug: true
                 insecure: true
                 registry: 192.168.31.100:5000

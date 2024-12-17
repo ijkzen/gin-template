@@ -5,11 +5,11 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/ijkzen/gin-template/service/log"
+	"github.com/ijkzen/k8s-example/service/log"
 
 	"github.com/glebarez/sqlite"
-	"github.com/ijkzen/gin-template/service/database/model"
-	"github.com/ijkzen/gin-template/service/version"
+	"github.com/ijkzen/k8s-example/service/database/model"
+	"github.com/ijkzen/k8s-example/service/version"
 	"gorm.io/gorm"
 )
 

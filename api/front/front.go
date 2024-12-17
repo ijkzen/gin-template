@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 
 	"github.com/gin-gonic/gin"
-	"github.com/ijkzen/gin-template/bean"
-	"github.com/ijkzen/gin-template/service/log"
-	"github.com/ijkzen/gin-template/static"
+	"github.com/ijkzen/k8s-example/bean"
+	"github.com/ijkzen/k8s-example/service/log"
+	"github.com/ijkzen/k8s-example/static"
 )
 
 func Front(c *gin.Context) {

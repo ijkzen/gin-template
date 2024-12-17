@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-template": {
+    "k8s-example": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -92,10 +92,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-template:build:production"
+              "buildTarget": "k8s-example:build:production"
             },
             "development": {
-              "buildTarget": "angular-template:build:development"
+              "buildTarget": "k8s-example:build:development"
             }
           },
           "defaultConfiguration": "development"

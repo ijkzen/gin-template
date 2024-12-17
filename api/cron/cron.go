@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/ijkzen/gin-template/bean"
-	gcron "github.com/ijkzen/gin-template/cron"
+	"github.com/ijkzen/k8s-example/bean"
+	gcron "github.com/ijkzen/k8s-example/cron"
 )
 
 func Exec(c *gin.Context) {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/ijkzen/gin-template/service/log"
+	"github.com/ijkzen/k8s-example/service/log"
 	"gorm.io/gorm/logger"
 )
 

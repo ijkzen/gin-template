@@ -2,7 +2,7 @@ package log
 
 import (
 	"io"
-	"github.com/ijkzen/gin-template/service/version"
+	"github.com/ijkzen/k8s-example/service/version"
 	"os"
 	"path/filepath"
 	"time"
