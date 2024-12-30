@@ -1,0 +1,7 @@
+@use "@angular/material" as mat;
+
+@mixin theme($theme) {
+  .nav-bar-item {
+    background: mat.get-theme-color($theme, primary-container);
+  }
+}

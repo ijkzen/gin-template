@@ -1,5 +1,6 @@
 @use "@angular/material" as mat;
 @use "../app/page/toolbar/toolbar-theme";
+@use "../app/page/admin/nav-bar-item/navbaritem-theme";
 
 @mixin theme($theme) {
   .app-background {
@@ -11,4 +12,5 @@
   }
 
   @include toolbar-theme.theme($theme);
+  @include navbaritem-theme.theme($theme);
 }

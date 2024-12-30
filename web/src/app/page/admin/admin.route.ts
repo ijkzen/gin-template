@@ -12,8 +12,12 @@ export const routes: Routes = [
         children: [
             {
                 path: "",
-                redirectTo: "menu1",
+                redirectTo: "nav",
                 pathMatch: "full"
+            },
+            {
+                path: "nav",
+                loadChildren: () => import('./nav-bar/nav.route').then(m => m.routes)
             },
             {
                 path: "menu1",

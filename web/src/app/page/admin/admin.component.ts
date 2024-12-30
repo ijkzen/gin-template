@@ -14,6 +14,10 @@ import { MatButtonModule } from '@angular/material/button';
 export class AdminComponent {
   routerList = [
     {
+      name: "Nav",
+      path: "./nav"
+    },
+    {
       name: "Menu1",
       path: "./menu1"
     },

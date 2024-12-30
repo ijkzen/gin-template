@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
-import { MatToolbar } from '@angular/material/toolbar';
 import { StyleManagerService } from '../../service/style-manager.service';
 import { MatButtonModule } from '@angular/material/button';
 import { ProgressBarService } from '../../service/progress-bar.service';
@@ -13,7 +12,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [MatToolbar, MatIconModule, MatButtonModule, RouterLink],
+  imports: [MatIconModule, MatButtonModule, RouterLink],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })

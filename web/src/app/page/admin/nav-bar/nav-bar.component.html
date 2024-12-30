@@ -1,0 +1,11 @@
+<div class="flex flex-row nav-height w-full">
+    <div class="flex flex-col gap-2 p-3 nav-height w-52">
+        @for (item of navList; track $index; let idx = $index) {
+            <app-nav-bar-item [data]="item"></app-nav-bar-item>
+        }
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="p-4 nav-height">
+        <router-outlet></router-outlet>
+    </div>
+</div>

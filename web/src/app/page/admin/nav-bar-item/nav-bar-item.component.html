@@ -1,0 +1,5 @@
+<div class="pl-4 pr-4 pt-2 pb-2 rounded-full app-foreground cursor-pointer" matRipple
+    [class]="{'hover:bg-slate-100': !isSelected&&!isDark, 'hover:bg-neutral-800': !isSelected&&isDark, 'nav-bar-item': isSelected}"
+    (click)="select()">
+    {{ data.name }}
+</div>

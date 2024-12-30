@@ -34,15 +34,17 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+$transitionTime: 0.3s;
+
 .app-foreground {
-  transition: color 0.3s ease;
+  transition: color $transitionTime ease;
 }
 
 html,
 body {
-  transition: background-color 0.3s ease;
+  transition: background-color $transitionTime ease;
 }
 
-.app-background {
-  transition: background-color 0.3s ease;
+.app-background, .app-navbar, .app-navbar-header,.nav-bar-item {
+  transition: background-color $transitionTime ease;
 }
