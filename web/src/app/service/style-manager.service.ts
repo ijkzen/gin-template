@@ -1,27 +1,43 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 
 /**
  * Class for managing stylesheets. Stylesheets are loaded into named slots so that they can be
  * removed or changed later.
  */
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class StyleManagerService {
 
-  isDark = false;
+  private darkThemeSubject = new BehaviorSubject<boolean>(false);
+
+  darkTheme$ = this.darkThemeSubject.asObservable();
+
+  isDark() {
+    return this.darkThemeSubject.value;
+  }
+
+  switchTheme() {
+    if (this.darkThemeSubject.value) {
+      this.removeStyle("theme");
+    } else {
+      this.setStyle("theme", "magenta-violet.css");
+    }
+  }
+
   /**
    * Set the stylesheet with the specified key.
    */
-  setStyle(key: string, href: string) {
-    this.isDark = true;
+  private setStyle(key: string, href: string) {
+    this.darkThemeSubject.next(true);
     getLinkElementForKey(key).setAttribute('href', href);
   }
 
   /**
    * Remove the stylesheet with the specified key.
    */
-  removeStyle(key: string) {
-    this.isDark = false;
+  private removeStyle(key: string) {
+    this.darkThemeSubject.next(false);
     const existingLinkElement = getExistingLinkElementByKey(key);
     if (existingLinkElement) {
       document.head.removeChild(existingLinkElement);

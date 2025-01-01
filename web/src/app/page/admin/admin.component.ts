@@ -3,11 +3,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ThemeSwitchIconComponent } from "../../shared/theme-switch-icon/theme-switch-icon.component";
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [MatTabsModule, RouterLink, RouterOutlet, MatIconModule, MatButtonModule],
+  imports: [MatTabsModule, RouterLink, RouterOutlet, MatIconModule, MatButtonModule, ThemeSwitchIconComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })

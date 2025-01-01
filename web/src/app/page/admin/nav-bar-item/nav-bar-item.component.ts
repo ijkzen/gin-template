@@ -12,7 +12,7 @@ import { MatRippleModule } from '@angular/material/core';
   templateUrl: './nav-bar-item.component.html',
   styleUrl: './nav-bar-item.component.scss'
 })
-export class NavBarItemComponent implements OnInit, OnChanges{
+export class NavBarItemComponent implements OnInit, OnChanges {
 
   @Input() data: Nav = new Nav("", "");
 
@@ -30,6 +30,9 @@ export class NavBarItemComponent implements OnInit, OnChanges{
   }
   ngOnInit(): void {
     this.checkSelect();
+    this.themeService.darkTheme$.subscribe(value => {
+      this.isDark = value;
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -38,7 +41,6 @@ export class NavBarItemComponent implements OnInit, OnChanges{
 
   checkSelect() {
     this.isSelected = this.navService.isSelected(this.data.url);
-    this.isDark = this.themeService.isDark;
   }
 
   select(): void {

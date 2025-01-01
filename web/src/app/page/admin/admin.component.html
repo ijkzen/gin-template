@@ -1,9 +1,12 @@
-<nav mat-tab-nav-bar class="flex flex-row items-start justify-start app-navbar-header" mat-stretch-tabs="false" mat-align-tabs="start" [tabPanel]="tabPanel">
-   @for (router of routerList; track router.path) {
-        <a [routerLink]="router.path" mat-tab-link>{{ router.name }}</a>
+<nav mat-tab-nav-bar class="flex flex-row items-start justify-start app-navbar-header" mat-stretch-tabs="false"
+    mat-align-tabs="start" [tabPanel]="tabPanel">
+    @for (router of routerList; track router.path) {
+    <a [routerLink]="router.path" mat-tab-link>{{ router.name }}</a>
     }
 
     <span class="flex-1"></span>
+
+    <app-theme-switch-icon></app-theme-switch-icon>
 
     <a routerLink="/" class="pr-4">
         <button mat-icon-button>
@@ -14,4 +17,4 @@
 
 <mat-tab-nav-panel #tabPanel>
     <router-outlet></router-outlet>
-  </mat-tab-nav-panel>
+</mat-tab-nav-panel>

@@ -9,17 +9,7 @@
         <mat-icon fontSet="material-symbols-sharp">check</mat-icon>
     </button>
 
-    <span (click)="switchTheme()">
-        @if (isDark) {
-        <button mat-icon-button>
-            <mat-icon fontSet="material-symbols-sharp">sunny</mat-icon>
-        </button>
-        } @else {
-        <button mat-icon-button>
-            <mat-icon fontSet="material-symbols-sharp">dark_mode</mat-icon>
-        </button>
-        }
-    </span>
+    <app-theme-switch-icon></app-theme-switch-icon>
 
     <button mat-icon-button (click)="showToast()">
         <mat-icon fontSet="material-symbols-sharp">notifications</mat-icon>
