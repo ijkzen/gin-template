@@ -4,11 +4,10 @@ import { RouterOutlet } from '@angular/router';
 import { Nav } from '../../../service/bean/nav';
 import { NavBarItemComponent } from '../nav-bar-item/nav-bar-item.component';
 @Component({
-  selector: 'app-nav-bar',
-  standalone: true,
-  imports: [MatDividerModule, RouterOutlet, NavBarItemComponent],
-  templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.scss'
+    selector: 'app-nav-bar',
+    imports: [MatDividerModule, RouterOutlet, NavBarItemComponent],
+    templateUrl: './nav-bar.component.html',
+    styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
   navList : Nav[] = [

@@ -10,11 +10,10 @@ import { ThemeSwitchIconComponent } from "../../shared/theme-switch-icon/theme-s
 
 
 @Component({
-  selector: 'app-toolbar',
-  standalone: true,
-  imports: [MatIconModule, MatButtonModule, RouterLink, ThemeSwitchIconComponent],
-  templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.scss'
+    selector: 'app-toolbar',
+    imports: [MatIconModule, MatButtonModule, RouterLink, ThemeSwitchIconComponent],
+    templateUrl: './toolbar.component.html',
+    styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
 

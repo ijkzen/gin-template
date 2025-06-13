@@ -4,11 +4,10 @@ import { StyleManagerService } from '../../service/style-manager.service';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-theme-switch-icon',
-  standalone: true,
-  imports: [MatIconModule, MatButtonModule],
-  templateUrl: './theme-switch-icon.component.html',
-  styleUrl: './theme-switch-icon.component.scss'
+    selector: 'app-theme-switch-icon',
+    imports: [MatIconModule, MatButtonModule],
+    templateUrl: './theme-switch-icon.component.html',
+    styleUrl: './theme-switch-icon.component.scss'
 })
 export class ThemeSwitchIconComponent implements OnInit {
   constructor(private styleManager: StyleManagerService) { }

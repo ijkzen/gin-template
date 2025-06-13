@@ -6,11 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { ThemeSwitchIconComponent } from "../../shared/theme-switch-icon/theme-switch-icon.component";
 
 @Component({
-  selector: 'app-admin',
-  standalone: true,
-  imports: [MatTabsModule, RouterLink, RouterOutlet, MatIconModule, MatButtonModule, ThemeSwitchIconComponent],
-  templateUrl: './admin.component.html',
-  styleUrl: './admin.component.scss'
+    selector: 'app-admin',
+    imports: [MatTabsModule, RouterLink, RouterOutlet, MatIconModule, MatButtonModule, ThemeSwitchIconComponent],
+    templateUrl: './admin.component.html',
+    styleUrl: './admin.component.scss'
 })
 export class AdminComponent {
   routerList = [

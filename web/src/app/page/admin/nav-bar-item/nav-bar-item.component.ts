@@ -6,11 +6,10 @@ import { StyleManagerService } from '../../../service/style-manager.service';
 import { MatRippleModule } from '@angular/material/core';
 
 @Component({
-  selector: 'app-nav-bar-item',
-  standalone: true,
-  imports: [MatRippleModule],
-  templateUrl: './nav-bar-item.component.html',
-  styleUrl: './nav-bar-item.component.scss'
+    selector: 'app-nav-bar-item',
+    imports: [MatRippleModule],
+    templateUrl: './nav-bar-item.component.html',
+    styleUrl: './nav-bar-item.component.scss'
 })
 export class NavBarItemComponent implements OnInit, OnChanges {
 
