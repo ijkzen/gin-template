@@ -1,14 +1,12 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 
 /**
  * Class for managing stylesheets. Stylesheets are loaded into named slots so that they can be
  * removed or changed later.
  */
-@Injectable({ providedIn: 'root' })
-export class StyleManagerService {
-
+@Injectable({ providedIn: "root" })
+export class ThemeService {
   private darkThemeSubject = new BehaviorSubject<boolean>(false);
 
   darkTheme$ = this.darkThemeSubject.asObservable();
@@ -30,7 +28,7 @@ export class StyleManagerService {
    */
   private setStyle(key: string, href: string) {
     this.darkThemeSubject.next(true);
-    getLinkElementForKey(key).setAttribute('href', href);
+    getLinkElementForKey(key).setAttribute("href", href);
   }
 
   /**
@@ -50,12 +48,14 @@ function getLinkElementForKey(key: string) {
 }
 
 function getExistingLinkElementByKey(key: string) {
-  return document.head.querySelector(`link[rel="stylesheet"].${getClassNameForKey(key)}`);
+  return document.head.querySelector(
+    `link[rel="stylesheet"].${getClassNameForKey(key)}`
+  );
 }
 
 function createLinkElementWithKey(key: string) {
-  const linkEl = document.createElement('link');
-  linkEl.setAttribute('rel', 'stylesheet');
+  const linkEl = document.createElement("link");
+  linkEl.setAttribute("rel", "stylesheet");
   linkEl.classList.add(getClassNameForKey(key));
   document.head.appendChild(linkEl);
   return linkEl;

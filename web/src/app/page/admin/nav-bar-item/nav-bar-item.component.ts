@@ -1,18 +1,23 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Nav } from '../../../service/bean/nav';
-import { NavService } from '../../../service/nav.service';
-import { Router } from '@angular/router';
-import { StyleManagerService } from '../../../service/style-manager.service';
-import { MatRippleModule } from '@angular/material/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from "@angular/core";
+import { Nav } from "../../../service/bean/nav";
+import { NavService } from "../../../service/nav.service";
+import { Router } from "@angular/router";
+import { ThemeService } from "../../../service/theme.service";
+import { MatRippleModule } from "@angular/material/core";
 
 @Component({
-    selector: 'app-nav-bar-item',
-    imports: [MatRippleModule],
-    templateUrl: './nav-bar-item.component.html',
-    styleUrl: './nav-bar-item.component.scss'
+  selector: "app-nav-bar-item",
+  imports: [MatRippleModule],
+  templateUrl: "./nav-bar-item.component.html",
+  styleUrl: "./nav-bar-item.component.scss",
 })
 export class NavBarItemComponent implements OnInit, OnChanges {
-
   @Input() data: Nav = new Nav("", "");
 
   isSelected = false;
@@ -21,17 +26,17 @@ export class NavBarItemComponent implements OnInit, OnChanges {
   constructor(
     private navService: NavService,
     private router: Router,
-    private themeService: StyleManagerService
+    private themeService: ThemeService
   ) {
-    this.navService.nav$.subscribe(_ => {
+    this.navService.nav$.subscribe((_) => {
       this.checkSelect();
-    })
+    });
   }
   ngOnInit(): void {
     this.checkSelect();
-    this.themeService.darkTheme$.subscribe(value => {
+    this.themeService.darkTheme$.subscribe((value) => {
       this.isDark = value;
-    })
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
