@@ -48,3 +48,16 @@ body {
 .app-background, .app-navbar, .app-navbar-header,.nav-bar-item {
   transition: background-color $transitionTime ease;
 }
+
+
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch {
+  border-right-style: hidden;
+}
+.mat-mdc-input-element {
+  box-shadow: none !important;
+}
+
+.mat-grid-tile-content {
+  align-items: start !important;
+  justify-content: start !important;
+}
