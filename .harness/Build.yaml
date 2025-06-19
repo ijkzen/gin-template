@@ -18,9 +18,8 @@ spec:
                 force_tag: true
                 pull_image: false
                 purge: true
-                repo: 192.168.31.100:5000/ijkzen/template
-                launch_debug: true
+                repo: 192.168.31.100:2002/ijkzen/template
                 insecure: true
-                registry: 192.168.31.100:5000
+                registry: 192.168.31.100:2002
       type: ci
 version: 2
