@@ -7,7 +7,7 @@ import (
 
 	"github.com/ijkzen/gin-template/service/log"
 
-	"github.com/glebarez/sqlite"
+	"gorm.io/driver/sqlite"
 	"github.com/ijkzen/gin-template/service/database/model"
 	"github.com/ijkzen/gin-template/service/version"
 	"gorm.io/gorm"
