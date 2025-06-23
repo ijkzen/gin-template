@@ -4,6 +4,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ThemeSwitchIconComponent } from "../../shared/theme-switch-icon/theme-switch-icon.component";
+import { WebsocketService } from '../../service/websocket.service';
 
 @Component({
     selector: 'app-admin',
@@ -30,4 +31,8 @@ export class AdminComponent {
       path: "./menu3"
     }
   ]
+
+  constructor(private websocketService: WebsocketService) {
+  }
+
 }

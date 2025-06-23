@@ -1,6 +1,7 @@
 package router
 
 import (
+	"encoding/json"
 	"sync"
 
 	"github.com/gin-gonic/gin"
@@ -22,7 +23,18 @@ type wsListener struct{}
 
 func (l *wsListener) OnRegister(client *websocket.Conn) {
 	log.SugarLogger.Info("WebSocket client connected", "client", client.RemoteAddr().String())
-	client.WriteMessage(websocket.TextMessage, []byte("Hello World!"))
+	data := wss.SocketData[string]{
+		EventCode: "register",
+		From:     "server",
+		To:       client.RemoteAddr().String(),
+		Data:     "Hello World!",
+	}
+	dataBytes, err := json.Marshal(data)
+	if err != nil {
+		log.SugarLogger.Error("WebSocket消息序列化失败", "error", err)
+		return
+	}
+	client.WriteMessage(websocket.TextMessage, dataBytes)
 }
 
 func (l *wsListener) OnUnregister(client *websocket.Conn) {
