@@ -60,6 +60,9 @@ func NewWebSocketManager() *WebSocketManager {
 		broadcast:  make(chan []byte),
 		register:   make(chan *ws.Conn),
 		unregister: make(chan *ws.Conn),
+		registryListener:  make(chan OnWebSocketListener),
+		unregistryListener: make(chan OnWebSocketListener),
+		listeners:  make([]OnWebSocketListener, 0),
 	}
 
 	// 启动管理器
@@ -84,7 +87,7 @@ func (m *WebSocketManager) run() {
 			// 注册新连接
 			m.mutex.Lock()
 			m.clients[client] = true
-
+			log.SugarLogger.Info("WebSocket client registered", " client ", client.RemoteAddr().String())
 			for _, listener := range m.listeners {
 				listener.OnRegister(client)
 			}
@@ -97,6 +100,7 @@ func (m *WebSocketManager) run() {
 				delete(m.clients, client)
 				client.Close()
 			}
+			log.SugarLogger.Info("WebSocket client unregistered", " client ", client.RemoteAddr().String())
 			for _, listener := range m.listeners {
 				listener.OnUnregister(client)
 			}
@@ -116,6 +120,7 @@ func (m *WebSocketManager) run() {
 		case listener := <-m.registryListener:
 			// 注册监听器
 			m.mutex.Lock()
+			log.SugarLogger.Info("WebSocket listener registered", " listener")
 			m.listeners = append(m.listeners, listener)
 			m.mutex.Unlock()
 		case listener := <-m.unregistryListener:
@@ -127,6 +132,7 @@ func (m *WebSocketManager) run() {
 					break
 				}
 			}
+			log.SugarLogger.Info("WebSocket listener unregistered", " listener")
 			m.mutex.Unlock()
 		}
 	}
