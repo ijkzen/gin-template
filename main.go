@@ -19,6 +19,7 @@ func main() {
 
 	router.DebugGroup(engine)
 	router.Front(engine)
+	router.WebSocketRouter(engine)
 	pprof.Register(engine)
 	engine.Run(":4007")
 }
