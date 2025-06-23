@@ -13,7 +13,7 @@ RUN cd /build/web && \
     cp -r /build/web/dist/browser/* /build/static/front && \
     cd /build && \
     apk add --no-cache gcc musl-dev && \
-    CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -a -tags netgo -ldflags '-w -extldflags "-static"' -o main . && \
+    CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -a -tags netgo -ldflags '-s -w -extldflags "-static"' -o main . && \
     apk add --no-cache upx && \
     upx --lzma main
 
