@@ -3,13 +3,14 @@ import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
 import { AuthService } from "../../../service/auth.service";
 import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule],
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"], // 不在此处编写样式，使用 tailwind 类
 })
