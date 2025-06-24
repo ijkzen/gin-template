@@ -46,5 +46,5 @@ func init() {
 		db.Exec(`PRAGMA busy_timeout=5000`)
 		db.Exec(`PRAGMA mmap_size=102400`)
 	}
-	Database.AutoMigrate(&model.TemplateModel{})
+	Database.AutoMigrate(&model.User{})
 }

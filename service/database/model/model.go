@@ -2,7 +2,8 @@ package model
 
 import "gorm.io/gorm"
 
-type TemplateModel struct {
+type User struct {
 	gorm.Model
-	Name string `gorm:"index"`
+	Username string `gorm:"index" json:"username"`
+	Password string `json:"password"`
 }

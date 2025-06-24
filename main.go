@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	_ "github.com/ijkzen/gin-template/cron"
+	"github.com/ijkzen/gin-template/middleware"
 	"github.com/ijkzen/gin-template/router"
 	_ "github.com/ijkzen/gin-template/service/database"
 )
@@ -13,10 +14,10 @@ import (
 func main() {
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()
-	router.Middleware(engine)
+	middleware.Middleware(engine)
 	apiGroup := engine.Group("api")
+	router.AuthRouter(apiGroup)
 	router.CronGroup(apiGroup)
-
 	router.DebugGroup(engine)
 	router.Front(engine)
 	router.WebSocketRouter(engine)
