@@ -44,6 +44,9 @@ export class AppComponent {
       if (this.swUpdate.isEnabled) {
         try {
           const updateFound = await this.swUpdate.checkForUpdate();
+          if (updateFound) {
+            document.location.reload();
+          }
         } catch (err) {
           console.error("Failed to check for updates:", err);
         }

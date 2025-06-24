@@ -83,4 +83,16 @@ export class WebsocketService {
       this.socket = null;
     }
   }
+
+  /**
+   * 发送消息到WebSocket服务器
+   * @param message 要发送的消息
+   */
+  sendMessage(message: SocketData<any>): void {
+    if (this.socket && this.connected) {
+      this.socket.send(JSON.stringify(message));
+    } else {
+      console.warn("WebSocket未连接，无法发送消息");
+    }
+  }
 }
