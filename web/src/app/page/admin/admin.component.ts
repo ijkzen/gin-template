@@ -5,6 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ThemeSwitchIconComponent } from "../../shared/theme-switch-icon/theme-switch-icon.component";
 import { WebsocketService } from '../../service/websocket.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangePasswordDialogComponent } from '../changepw/change-password-dialog.component';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
     selector: 'app-admin',
@@ -32,7 +35,22 @@ export class AdminComponent {
     }
   ]
 
-  constructor(private websocketService: WebsocketService) {
+  constructor(
+    private websocketService: WebsocketService,
+    private dialog: MatDialog,
+    private authService: AuthService
+  ) {
   }
 
+
+  showChangePasswordDialog() {
+    this.dialog.open(ChangePasswordDialogComponent, {
+      width: "400px",
+    });
+  }
+
+  logout() {
+    this.authService.logout();
+    location.reload();
+  }
 }

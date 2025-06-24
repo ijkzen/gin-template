@@ -13,6 +13,14 @@
             <mat-icon fontSet="material-symbols-sharp">home</mat-icon>
         </button>
     </a>
+
+    <button mat-icon-button (click)="showChangePasswordDialog()">
+        <mat-icon fontSet="material-symbols-sharp">account_circle</mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="logout()">
+        <mat-icon fontSet="material-symbols-sharp">logout</mat-icon>
+    </button>
 </nav>
 
 <mat-tab-nav-panel #tabPanel>
