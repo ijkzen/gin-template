@@ -11,14 +11,26 @@ export class ThemeService {
 
   darkTheme$ = this.darkThemeSubject.asObservable();
 
+  constructor() {
+    const isDark = localStorage.getItem("darkTheme") === "true";
+    this.darkThemeSubject.next(isDark);
+    if (isDark) {
+      this.setStyle("theme", "magenta-violet.css");
+    } else {
+      this.removeStyle("theme");
+    }
+  }
+
   isDark() {
     return this.darkThemeSubject.value;
   }
 
   switchTheme() {
     if (this.darkThemeSubject.value) {
+      localStorage.setItem("darkTheme", "false");
       this.removeStyle("theme");
     } else {
+      localStorage.setItem("darkTheme", "true");
       this.setStyle("theme", "magenta-violet.css");
     }
   }
