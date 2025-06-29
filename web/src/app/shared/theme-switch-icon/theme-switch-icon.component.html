@@ -1,11 +1,8 @@
 <span (click)="switchTheme()">
     @if (isDark) {
-    <button mat-icon-button>
-        <mat-icon fontSet="material-symbols-sharp">sunny</mat-icon>
-    </button>
+    
+    <app-icon-button icon="sunny"></app-icon-button>
     } @else {
-    <button mat-icon-button>
-        <mat-icon fontSet="material-symbols-sharp">dark_mode</mat-icon>
-    </button>
+    <app-icon-button icon="dark_mode"></app-icon-button>
     }
 </span>

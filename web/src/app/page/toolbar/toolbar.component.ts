@@ -7,6 +7,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
 import { RouterLink } from "@angular/router";
 import { ThemeSwitchIconComponent } from "../../shared/theme-switch-icon/theme-switch-icon.component";
+import { IconButtonComponent } from "../../shared/icon-button/icon-button.component";
 
 @Component({
   selector: "app-toolbar",
@@ -15,7 +16,8 @@ import { ThemeSwitchIconComponent } from "../../shared/theme-switch-icon/theme-s
     MatButtonModule,
     RouterLink,
     ThemeSwitchIconComponent,
-  ],
+    IconButtonComponent
+],
   templateUrl: "./toolbar.component.html",
   styleUrl: "./toolbar.component.scss",
 })

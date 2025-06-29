@@ -8,10 +8,11 @@ import { WebsocketService } from '../../service/websocket.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangePasswordDialogComponent } from '../changepw/change-password-dialog.component';
 import { AuthService } from '../../service/auth.service';
+import { IconButtonComponent } from "../../shared/icon-button/icon-button.component";
 
 @Component({
     selector: 'app-admin',
-    imports: [MatTabsModule, RouterLink, RouterOutlet, MatIconModule, MatButtonModule, ThemeSwitchIconComponent],
+    imports: [MatTabsModule, RouterLink, RouterOutlet, MatIconModule, MatButtonModule, ThemeSwitchIconComponent, IconButtonComponent],
     templateUrl: './admin.component.html',
     styleUrl: './admin.component.scss'
 })

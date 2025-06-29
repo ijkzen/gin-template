@@ -9,18 +9,12 @@
     <app-theme-switch-icon></app-theme-switch-icon>
 
     <a routerLink="/" class="pr-4">
-        <button mat-icon-button>
-            <mat-icon fontSet="material-symbols-sharp">home</mat-icon>
-        </button>
+        <app-icon-button icon="home"></app-icon-button>
     </a>
 
-    <button mat-icon-button (click)="showChangePasswordDialog()">
-        <mat-icon fontSet="material-symbols-sharp">account_circle</mat-icon>
-    </button>
+    <app-icon-button icon="account_circle" (click)="showChangePasswordDialog()"></app-icon-button>
 
-    <button mat-icon-button (click)="logout()">
-        <mat-icon fontSet="material-symbols-sharp">logout</mat-icon>
-    </button>
+    <app-icon-button icon="logout" (click)="logout()"></app-icon-button>
 </nav>
 
 <mat-tab-nav-panel #tabPanel>
