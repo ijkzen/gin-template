@@ -64,7 +64,7 @@
                 "bundleName": "azure-blue"
               },
               {
-                "input": "material-symbols/sharp.scss"
+                "input": "material-symbols/rounded.scss"
               }
             ],
             "scripts": []
