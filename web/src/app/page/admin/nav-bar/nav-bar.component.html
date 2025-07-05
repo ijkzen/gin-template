@@ -1,11 +1,28 @@
-<div class="flex flex-row nav-height w-full">
+<div class="flex flex-row nav-height w-full flex-wrap">
+    @if (isDesktop()) {
     <div class="flex flex-col gap-2 p-3 nav-height w-52">
         @for (item of navList; track $index; let idx = $index) {
         <app-nav-bar-item [data]="item"></app-nav-bar-item>
         }
     </div>
     <mat-divider [vertical]="true"></mat-divider>
-    <div class="p-4 nav-height w-full">
+    }
+
+    @if (!isDesktop()) {
+    <mat-toolbar class="w-full app-navbar-header">
+        <app-icon-button icon="menu" [matMenuTriggerFor]="menu"></app-icon-button>
+        <mat-menu #menu="matMenu">
+            @for (item of navList; track $index) {
+            <button mat-menu-item (click)="onRouter(item.url)" [disabled]="isSelected(item.url)">{{ item.name
+                }}</button>
+            }
+        </mat-menu>
+
+    </mat-toolbar>
+    <div class="basis-full w-full h-0"></div>
+    }
+
+    <div class="p-4 nav-height" [class]="{'w-full': !isDesktop()}">
         <router-outlet></router-outlet>
     </div>
 </div>

@@ -7,6 +7,6 @@
 
   .app-navbar,
   .app-navbar-header {
-    background: mat.get-theme-color($theme, primary-container);
+    background: mat.get-theme-color($theme, primary-container) !important;
   }
 }
