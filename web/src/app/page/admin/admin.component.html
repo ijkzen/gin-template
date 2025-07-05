@@ -1,20 +1,32 @@
-<nav mat-tab-nav-bar class="flex flex-row items-start justify-start app-navbar-header" mat-stretch-tabs="false"
-    mat-align-tabs="start" [tabPanel]="tabPanel">
-    @for (router of routerList; track router.path) {
-    <a [routerLink]="router.path" mat-tab-link>{{ router.name }}</a>
-    }
+<nav mat-tab-nav-bar class="app-navbar-header" mat-stretch-tabs="false" mat-align-tabs="start" [tabPanel]="tabPanel">
 
-    <span class="flex-1"></span>
+    <div class="flex flex-row items-start justify-start flex-wrap w-full">
+        <a routerLink="/">
+            <app-icon-button icon="home"></app-icon-button>
+        </a>
 
-    <app-theme-switch-icon></app-theme-switch-icon>
+        @if (isDesktop()) {
+        @for (router of routerList; track router.path) {
+        <a [routerLink]="router.path" mat-tab-link>{{ router.name }}</a>
+        }
+        }
 
-    <a routerLink="/" class="pr-4">
-        <app-icon-button icon="home"></app-icon-button>
-    </a>
+        <span class="flex-1"></span>
 
-    <app-icon-button icon="account_circle" (click)="showChangePasswordDialog()"></app-icon-button>
+        <app-theme-switch-icon></app-theme-switch-icon>
 
-    <app-icon-button icon="logout" (click)="logout()"></app-icon-button>
+        <app-icon-button icon="account_circle" (click)="showChangePasswordDialog()"></app-icon-button>
+
+        <app-icon-button icon="logout" (click)="logout()"></app-icon-button>
+
+        <div class="basis-full"></div>
+
+        @if (!isDesktop()) {
+        @for (router of routerList; track router.path) {
+        <a [routerLink]="router.path" mat-tab-link>{{ router.name }}</a>
+        }
+        }
+    </div>
 </nav>
 
 <mat-tab-nav-panel #tabPanel>
