@@ -5,7 +5,7 @@ import { AuthService } from "../../service/auth.service";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
-import { CommonModule } from "@angular/common";
+
 import { MatButtonModule } from "@angular/material/button";
 
 @Component({
@@ -14,7 +14,6 @@ import { MatButtonModule } from "@angular/material/button";
   styleUrls: ["./change-password-dialog.component.scss"],
   standalone: true,
   imports: [
-    CommonModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,

@@ -2,14 +2,14 @@ import { ApplicationRef, Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { ProgressBarService } from "./service/progressbar.service";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
-import { CommonModule } from "@angular/common";
+
 import { SwUpdate, VersionReadyEvent } from "@angular/service-worker";
 import { filter } from "rxjs/internal/operators/filter";
 import { concat, first, interval } from "rxjs";
 
 @Component({
   selector: "app-root",
-  imports: [RouterOutlet, MatProgressBarModule, CommonModule],
+  imports: [RouterOutlet, MatProgressBarModule],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })
