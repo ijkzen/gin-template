@@ -21,5 +21,22 @@ spec:
                 repo: 192.168.31.100:2002/ijkzen/template
                 insecure: true
                 registry: 192.168.31.100:2002
+
+          - name: notify
+            type: run
+            spec:
+              container: curlimages/curl
+              script: |
+                if [ "$DRONE_BUILD_STATUS" = "success" ]; then
+                  STATUS="success"
+                  NOTIFY="false"
+                else
+                  STATUS="fail"
+                  NOTIFY="true"
+                fi
+                curl -s -X POST http://192.168.31.233:6666 \
+                  -H "Content-Type: application/json" \
+                  -d "{\"status\":\"${STATUS}\",\"repo_name\":\"${DRONE_REPO_NAME}\",\"notify\":${NOTIFY}}" \
+                  -v
       type: ci
 version: 2
