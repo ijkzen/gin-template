@@ -7,13 +7,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/ijkzen/gin-template/bean"
-	"github.com/ijkzen/gin-template/service/log"
 	"github.com/ijkzen/gin-template/static"
 )
 
 func Front(c *gin.Context) {
 	url := c.Request.URL.Path
-	log.Logger.Info(url)
 	prefix := "front"
 	filename := prefix + url
 	file, err := static.FrontFs.ReadFile(prefix + url)
