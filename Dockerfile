@@ -1,4 +1,4 @@
-FROM 192.168.31.100:2002/ijkzen/build:v0.8 AS builder
+FROM 192.168.31.100:2002/ijkzen/build:v0.9 AS builder
 
 WORKDIR /build
 
