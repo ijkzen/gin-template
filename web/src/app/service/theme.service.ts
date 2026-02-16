@@ -25,7 +25,42 @@ export class ThemeService {
     return this.darkThemeSubject.value;
   }
 
-  switchTheme() {
+  switchTheme(origin?: { x: number; y: number }) {
+    const documentWithTransition = document as Document & {
+      startViewTransition?: (callback: () => void) => { ready: Promise<void> };
+    };
+
+    if (!origin || !documentWithTransition.startViewTransition) {
+      this.applyThemeToggle();
+      return;
+    }
+
+    const transition = documentWithTransition.startViewTransition(() => {
+      this.applyThemeToggle();
+    });
+
+    const endRadius = this.calculateEndRadius(origin.x, origin.y);
+
+    transition.ready
+      .then(() => {
+        document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${origin.x}px ${origin.y}px)`,
+              `circle(${endRadius}px at ${origin.x}px ${origin.y}px)`,
+            ],
+          },
+          {
+            duration: 300,
+            easing: "ease-in-out",
+            pseudoElement: "::view-transition-new(root)",
+          }
+        );
+      })
+      .catch(() => undefined);
+  }
+
+  private applyThemeToggle() {
     if (this.darkThemeSubject.value) {
       localStorage.setItem("darkTheme", "false");
       this.removeStyle("theme");
@@ -33,6 +68,19 @@ export class ThemeService {
       localStorage.setItem("darkTheme", "true");
       this.setStyle("theme", "magenta-violet.css");
     }
+  }
+
+  private calculateEndRadius(x: number, y: number): number {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const distances = [
+      Math.hypot(x, y),
+      Math.hypot(width - x, y),
+      Math.hypot(x, height - y),
+      Math.hypot(width - x, height - y),
+    ];
+
+    return Math.max(...distances);
   }
 
   /**

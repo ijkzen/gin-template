@@ -6,15 +6,11 @@
 @tailwind components;
 @tailwind utilities;
 
-$theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-  )
-);
+$theme: mat.define-theme((color: (theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+    ));
 
 // Include material core styles.
 @include mat.core();
@@ -29,6 +25,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -45,7 +42,10 @@ body {
   transition: background-color $transitionTime ease;
 }
 
-.app-background, .app-navbar, .app-navbar-header,.nav-bar-item {
+.app-background,
+.app-navbar,
+.app-navbar-header,
+.nav-bar-item {
   transition: background-color $transitionTime ease;
 }
 
@@ -53,6 +53,7 @@ body {
 .mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch {
   border-right-style: hidden;
 }
+
 .mat-mdc-input-element {
   box-shadow: none !important;
 }
@@ -68,4 +69,10 @@ body {
 
 .mat-mdc-tab-link-container {
   border-bottom-width: 0px !important;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }

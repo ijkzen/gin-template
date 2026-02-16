@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { ThemeService } from "../../service/theme.service";
-import { MatButtonModule } from "@angular/material/button";
 import { IconButtonComponent } from "../icon-button/icon-button.component";
 
 @Component({
@@ -22,7 +22,18 @@ export class ThemeSwitchIconComponent implements OnInit {
     });
   }
 
-  protected switchTheme() {
-    this.styleManager.switchTheme();
+  protected switchTheme(event: MouseEvent) {
+    const currentTarget = event.currentTarget as HTMLElement | null;
+
+    if (!currentTarget) {
+      this.styleManager.switchTheme();
+      return;
+    }
+
+    const rect = currentTarget.getBoundingClientRect();
+    this.styleManager.switchTheme({
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+    });
   }
 }

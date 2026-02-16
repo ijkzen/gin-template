@@ -1,6 +1,6 @@
-<span (click)="switchTheme()">
+<span (click)="switchTheme($event)">
     @if (isDark) {
-    
+
     <app-icon-button icon="sunny"></app-icon-button>
     } @else {
     <app-icon-button icon="dark_mode"></app-icon-button>
