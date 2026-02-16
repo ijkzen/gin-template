@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
@@ -6,16 +6,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class NavService {
+  private router = inject(Router);
+  private activeRoute = inject(ActivatedRoute);
 
   private navSubject = new BehaviorSubject<boolean>(false);
-  public nav$ = this.navSubject.asObservable();
+  readonly nav$ = this.navSubject.asObservable();
 
   private navigation = "";
-
-  constructor(
-    private router: Router,
-    private activeRoute: ActivatedRoute
-  ) { }
 
 
   isSelected(navigation: string) {

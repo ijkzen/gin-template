@@ -1,4 +1,4 @@
-import { ApplicationRef, Component } from "@angular/core";
+import { ApplicationRef, Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { ProgressBarService } from "./service/progressbar.service";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
@@ -14,22 +14,22 @@ import { concat, first, interval } from "rxjs";
   styleUrl: "./app.component.scss",
 })
 export class AppComponent {
-  showProgressBar: boolean = false;
+  private progressBarService = inject(ProgressBarService);
+  private swUpdate = inject(SwUpdate);
+  private appRef = inject(ApplicationRef);
 
-  constructor(
-    private progressBarService: ProgressBarService,
-    private swUpdate: SwUpdate,
-    private appRef: ApplicationRef
-  ) {
+  protected showProgressBar = false;
+
+  constructor() {
     this.progressBarService.progressBar$.subscribe((show) => {
       this.showProgressBar = show;
     });
 
-    swUpdate.versionUpdates
+    this.swUpdate.versionUpdates
       .pipe(
         filter((evt): evt is VersionReadyEvent => evt.type === "VERSION_READY")
       )
-      .subscribe((evt) => {
+      .subscribe((evt: VersionReadyEvent) => {
         if (evt) {
           document.location.reload();
         }

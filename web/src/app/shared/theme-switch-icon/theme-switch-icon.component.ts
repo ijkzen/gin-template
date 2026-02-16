@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { ThemeService } from "../../service/theme.service";
 import { MatButtonModule } from "@angular/material/button";
@@ -11,9 +11,9 @@ import { IconButtonComponent } from "../icon-button/icon-button.component";
   styleUrl: "./theme-switch-icon.component.scss",
 })
 export class ThemeSwitchIconComponent implements OnInit {
-  constructor(private styleManager: ThemeService) {}
+  private styleManager = inject(ThemeService);
 
-  isDark = false;
+  protected isDark = false;
 
   ngOnInit(): void {
     this.isDark = this.styleManager.isDark();
@@ -22,7 +22,7 @@ export class ThemeSwitchIconComponent implements OnInit {
     });
   }
 
-  switchTheme() {
+  protected switchTheme() {
     this.styleManager.switchTheme();
   }
 }

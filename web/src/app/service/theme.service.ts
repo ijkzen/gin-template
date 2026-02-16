@@ -9,7 +9,7 @@ import { BehaviorSubject } from "rxjs";
 export class ThemeService {
   private darkThemeSubject = new BehaviorSubject<boolean>(false);
 
-  darkTheme$ = this.darkThemeSubject.asObservable();
+  readonly darkTheme$ = this.darkThemeSubject.asObservable();
 
   constructor() {
     const isDark = localStorage.getItem("darkTheme") === "true";

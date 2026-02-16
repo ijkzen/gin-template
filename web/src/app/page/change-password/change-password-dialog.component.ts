@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialogRef, MatDialogModule } from "@angular/material/dialog";
 import { AuthService } from "../../service/auth.service";
@@ -24,24 +24,20 @@ import { MatButtonModule } from "@angular/material/button";
 ],
 })
 export class ChangePasswordDialogComponent {
-  form: FormGroup;
-  hideOld = true;
-  hideNew = true;
-  hideConfirm = true;
-  errorMsg: string = "";
-  loading = false;
+  private fb = inject(FormBuilder);
+  private dialogRef = inject(MatDialogRef<ChangePasswordDialogComponent>);
+  private authService = inject(AuthService);
 
-  constructor(
-    private fb: FormBuilder,
-    private dialogRef: MatDialogRef<ChangePasswordDialogComponent>,
-    private authService: AuthService
-  ) {
-    this.form = this.fb.group({
-      oldPassword: ["", [Validators.required]],
-      newPassword: ["", [Validators.required]],
-      confirmPassword: ["", [Validators.required]],
-    });
-  }
+  protected form: FormGroup = this.fb.group({
+    oldPassword: ["", [Validators.required]],
+    newPassword: ["", [Validators.required]],
+    confirmPassword: ["", [Validators.required]],
+  });
+  protected hideOld = true;
+  protected hideNew = true;
+  protected hideConfirm = true;
+  protected errorMsg = "";
+  protected loading = false;
 
   submit() {
     this.errorMsg = "";

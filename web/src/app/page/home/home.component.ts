@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ToolbarComponent } from "../toolbar/toolbar.component";
 import { LoginComponent } from "./login/login.component";
 import { AuthService } from '../../service/auth.service';
@@ -10,15 +10,12 @@ import { AuthService } from '../../service/auth.service';
     styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-
-    constructor(
-        private authService: AuthService,
-    ) { }
+    private authService = inject(AuthService);
 
     ngOnInit() {
     }
 
-    isLogin() {
+    protected isLogin() {
         return this.authService.isLogin();  
     }
 }

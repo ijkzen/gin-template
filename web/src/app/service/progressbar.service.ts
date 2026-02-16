@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ProgressBarService {
   private progressBarSubject = new BehaviorSubject<boolean>(false);
-  progressBar$ = this.progressBarSubject.asObservable();
+  readonly progressBar$ = this.progressBarSubject.asObservable();
 
   show() {
     this.progressBarSubject.next(true);

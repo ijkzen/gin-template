@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Response } from './bean/response/response';
 
@@ -7,10 +7,7 @@ import { Response } from './bean/response/response';
   providedIn: 'root'
 })
 export class AdminService {
-
-  constructor(
-    private http: HttpClient
-  ) { }
+  private http = inject(HttpClient);
 
   getMenuList(): Observable<string[]> {
     return this.handleRequest(this.http.get<Response<string[]>>("/api/admin/menu/list"));

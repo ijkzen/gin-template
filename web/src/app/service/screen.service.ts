@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { BehaviorSubject } from "rxjs";
 
@@ -6,6 +6,8 @@ import { BehaviorSubject } from "rxjs";
   providedIn: "root",
 })
 export class ScreenService {
+  private breakpointObserver = inject(BreakpointObserver);
+
   private displayNameMap = new Map([
     [Breakpoints.XSmall, 0],
     [Breakpoints.Small, 0],
@@ -15,10 +17,10 @@ export class ScreenService {
   ]);
 
   private largeScreenSubject$ = new BehaviorSubject(false);
-  largeObservable = this.largeScreenSubject$.asObservable();
+  readonly largeObservable = this.largeScreenSubject$.asObservable();
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-    breakpointObserver
+  constructor() {
+    this.breakpointObserver
       .observe([
         Breakpoints.XSmall,
         Breakpoints.Small,
@@ -36,7 +38,7 @@ export class ScreenService {
         }
       });
 
-      this.largeScreenSubject$.next(breakpointObserver.isMatched(Breakpoints.Large) || breakpointObserver.isMatched(Breakpoints.XLarge))
+      this.largeScreenSubject$.next(this.breakpointObserver.isMatched(Breakpoints.Large) || this.breakpointObserver.isMatched(Breakpoints.XLarge))
   }
 
   isLargeScreen() {

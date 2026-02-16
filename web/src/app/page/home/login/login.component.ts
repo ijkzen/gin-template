@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -15,14 +15,12 @@ import { Router } from "@angular/router";
   styleUrls: ["./login.component.scss"], // 不在此处编写样式，使用 tailwind 类
 })
 export class LoginComponent {
-  username: string = "";
-  password: string = "";
-  errorMessage: string | null = null;
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) {}
+  protected username = "";
+  protected password = "";
+  protected errorMessage: string | null = null;
 
   login() {
     this.errorMessage = null;

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { ProgressBarService } from "../../service/progressbar.service";
@@ -22,13 +22,11 @@ import { IconButtonComponent } from "../../shared/icon-button/icon-button.compon
   styleUrl: "./toolbar.component.scss",
 })
 export class ToolbarComponent {
-  isDark = false;
+  private progressBarService = inject(ProgressBarService);
+  private toastService = inject(ToastService);
+  private dialog = inject(MatDialog);
 
-  constructor(
-    private progressBarService: ProgressBarService,
-    private toastService: ToastService,
-    private dialog: MatDialog
-  ) {}
+  protected isDark = false;
 
   switchProgressBar() {
     if (this.progressBarService.showing()) {

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -23,17 +23,17 @@ import { NavBarItemComponent } from "../nav-bar-item/nav-bar-item.component";
   styleUrl: "./nav-bar.component.scss",
 })
 export class NavBarComponent {
-  navList: Nav[] = [
+  private screenService = inject(ScreenService);
+  private router = inject(Router);
+  private navService = inject(NavService);
+
+  protected navList: Nav[] = [
     { name: "nav1", url: "/admin/nav/nav1" },
     { name: "nav2", url: "/admin/nav/nav2" },
     { name: "nav3", url: "/admin/nav/nav3" },
   ];
 
-  constructor(
-    private screenService: ScreenService,
-    private router: Router,
-    private navService: NavService
-  ) {
+  constructor() {
     this.navService.select("/admin/nav/nav1");
   }
 

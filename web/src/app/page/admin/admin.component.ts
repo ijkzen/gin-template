@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
@@ -9,7 +9,7 @@ import { ScreenService } from "../../service/screen.service";
 import { WebsocketService } from "../../service/websocket.service";
 import { IconButtonComponent } from "../../shared/icon-button/icon-button.component";
 import { ThemeSwitchIconComponent } from "../../shared/theme-switch-icon/theme-switch-icon.component";
-import { ChangePasswordDialogComponent } from "../changepw/change-password-dialog.component";
+import { ChangePasswordDialogComponent } from "../change-password/change-password-dialog.component";
 
 @Component({
   selector: "app-admin",
@@ -26,7 +26,12 @@ import { ChangePasswordDialogComponent } from "../changepw/change-password-dialo
   styleUrl: "./admin.component.scss",
 })
 export class AdminComponent {
-  routerList = [
+  private websocketService = inject(WebsocketService);
+  private dialog = inject(MatDialog);
+  private authService = inject(AuthService);
+  private screenService = inject(ScreenService);
+
+  protected routerList = [
     {
       name: "Nav",
       path: "./nav",
@@ -45,12 +50,7 @@ export class AdminComponent {
     },
   ];
 
-  constructor(
-    private websocketService: WebsocketService,
-    private dialog: MatDialog,
-    private authService: AuthService,
-    private screenService: ScreenService
-  ) {}
+
 
   showChangePasswordDialog() {
     this.dialog.open(ChangePasswordDialogComponent, {

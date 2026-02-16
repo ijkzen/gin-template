@@ -1,5 +1,6 @@
 import {
   Component,
+  inject,
   Input,
   OnChanges,
   OnInit,
@@ -18,16 +19,16 @@ import { MatRippleModule } from "@angular/material/core";
   styleUrl: "./nav-bar-item.component.scss",
 })
 export class NavBarItemComponent implements OnInit, OnChanges {
+  private navService = inject(NavService);
+  private router = inject(Router);
+  private themeService = inject(ThemeService);
+
   @Input() data: Nav = new Nav("", "");
 
-  isSelected = false;
-  isDark = false;
+  protected isSelected = false;
+  protected isDark = false;
 
-  constructor(
-    private navService: NavService,
-    private router: Router,
-    private themeService: ThemeService
-  ) {
+  constructor() {
     this.navService.nav$.subscribe((_) => {
       this.checkSelect();
     });

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ScreenService } from "./screen.service";
 
@@ -6,7 +6,8 @@ import { ScreenService } from "./screen.service";
   providedIn: "root",
 })
 export class ToastService {
-  constructor(private snackBar: MatSnackBar, private screen: ScreenService) {}
+  private snackBar = inject(MatSnackBar);
+  private screen = inject(ScreenService);
 
   showToast(message: string, action: string = "Close") {
     this.snackBar.open(message, action, {
