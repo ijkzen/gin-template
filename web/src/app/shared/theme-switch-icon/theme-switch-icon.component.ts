@@ -11,13 +11,13 @@ import { IconButtonComponent } from "../icon-button/icon-button.component";
   styleUrl: "./theme-switch-icon.component.scss",
 })
 export class ThemeSwitchIconComponent implements OnInit {
-  private styleManager = inject(ThemeService);
+  private themeService = inject(ThemeService);
 
   protected isDark = false;
 
   ngOnInit(): void {
-    this.isDark = this.styleManager.isDark();
-    this.styleManager.darkTheme$.subscribe((isDark) => {
+    this.isDark = this.themeService.isDark();
+    this.themeService.darkTheme$.subscribe((isDark) => {
       this.isDark = isDark;
     });
   }
@@ -26,12 +26,12 @@ export class ThemeSwitchIconComponent implements OnInit {
     const currentTarget = event.currentTarget as HTMLElement | null;
 
     if (!currentTarget) {
-      this.styleManager.switchTheme();
+      this.themeService.switchTheme();
       return;
     }
 
     const rect = currentTarget.getBoundingClientRect();
-    this.styleManager.switchTheme({
+    this.themeService.switchTheme({
       x: rect.left + rect.width / 2,
       y: rect.top + rect.height / 2,
     });
