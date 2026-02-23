@@ -26,4 +26,9 @@ node_modules
 dist/
 .angular
 main
+gin-template
 template*
+
+# Frontend build output (keep index.html only)
+static/front/*
+!static/front/index.html
