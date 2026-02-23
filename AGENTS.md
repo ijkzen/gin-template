@@ -2,6 +2,7 @@
 
 ## Project Overview
 Go backend template using Gin framework with SQLite/GORM, JWT authentication, WebSocket support, and Zap logging.
+Frontend (Angular) located in `web/` directory, compiled to `static/`.
 
 ## Build & Run Commands
 
@@ -56,6 +57,23 @@ go mod tidy
 - Use relative imports from module root: `github.com/ijkzen/gin-template/...`
 - Always use `goimports` to auto-sort and clean imports
 
+Example:
+```go
+import (
+    "os"
+    "path/filepath"
+    "sync"
+
+    "github.com/gin-gonic/gin"
+    "gorm.io/driver/sqlite"
+    "gorm.io/gorm"
+
+    "github.com/ijkzen/gin-template/bean"
+    "github.com/ijkzen/gin-template/middleware"
+    "github.com/ijkzen/gin-template/service/database/dao"
+)
+```
+
 ### Formatting
 - Follow `gofmt` standards (tabs for indentation)
 - Run `go fmt ./...` before committing
@@ -69,19 +87,35 @@ go mod tidy
 - **Variables**: camelCase, descriptive names
 - **Constants**: PascalCase or ALL_CAPS for true constants
 - **Interfaces**: suffix with "-er" (e.g., `Listener`, `Reader`)
+- **DAO**: suffix with "Dao" (e.g., `UserDao`, `ArticleDao`)
 
 ### Types
 - Use Go 1.23+ features appropriately
 - Prefer generics for reusable response types: `Response[T any]`
 - Use pointer receivers for methods that modify state
-- Define request/response structs with JSON tags
+- Define request/response structs with JSON and binding tags
+```go
+type ChangePasswordRequest struct {
+    OldPassword string `json:"oldPassword" binding:"required"`
+    NewPassword string `json:"newPassword" binding:"required"`
+}
+```
 
 ### Error Handling
 - Always check errors explicitly
 - Use `err != nil` pattern
 - Wrap errors with context using `fmt.Errorf("...: %w", err)`
-- Log errors with Zap logger: `log.Logger.Error("msg: " + err.Error())`
+- Log errors with Zap logger: `log.Logger.Error(err.Error())`
 - Return appropriate HTTP status codes (400, 401, 500, etc.)
+
+Standard error response pattern:
+```go
+c.JSON(500, bean.Response[string]{
+    ErrorCode:    500,
+    ErrorMessage: "Failed to get user information",
+})
+return
+```
 
 ### Logging
 - Use Zap logger from `service/log`
@@ -92,7 +126,7 @@ go mod tidy
 ### Database (GORM)
 - Use DAO pattern for database operations
 - Protect writes with mutex: `database.DbMutex.Lock()`
-- Models embed `gorm.Model` for standard fields
+- Models embed `gorm.Model` for standard fields (ID, CreatedAt, UpdatedAt, DeletedAt)
 - Use struct tags for JSON and GORM
 
 ### API Handlers
@@ -101,23 +135,39 @@ go mod tidy
 - Return consistent response format: `bean.Response[T]`
 - Include `ErrorCode`, `ErrorMessage`, and `Data` fields
 
+Success response:
+```go
+c.JSON(200, bean.Response[string]{
+    ErrorCode: 0,
+    Data:      "Password updated successfully",
+})
+```
+
 ### Middleware
 - Register in `middleware.Middleware()`
 - Use Recovery, Zap logging, and CORS by default
 - JWT auth via `github.com/appleboy/gin-jwt/v2`
+- Get current user: `middleware.GetCurrentUser(c)`
 
 ### Project Structure
 ```
-api/        # HTTP handler functions
-bean/       # Response/request structs
-cron/       # Scheduled tasks
-middleware/ # Gin middleware
-router/     # Route definitions
-service/    # Business logic and utilities
-  database/ # GORM models, DAOs
-  log/      # Zap logger setup
-  websocket # WebSocket management
-static/     # Frontend static files
+api/           # HTTP handler functions
+  |-- cron    # Manual cron task triggers
+  |-- front   # Serve frontend static files
+  |-- statsviz# Profiling visualization
+  |-- user    # User-related endpoints
+  |-- websocket # WebSocket endpoints
+bean/          # Response/request structs
+cron/          # Scheduled task implementations
+middleware/    # Gin middleware
+router/        # Route definitions
+service/       # Business logic
+  |-- database # GORM models, DAOs
+  |-- log      # Zap logger setup
+  |-- version  # Environment detection
+  |-- websocket# WebSocket management
+static/        # Compiled frontend files
+web/           # Angular frontend source
 ```
 
 ## Copilot Instructions (from .github/copilot-instructions.md)
@@ -132,4 +182,5 @@ static/     # Frontend static files
 - JWT token expires in 30 days
 - Admin user auto-created on first run with random password
 - Statsviz enabled for profiling at `/debug/statsviz`
-- Pprof enabled for performance profiling
+- Pprof enabled for performance profiling at `/debug/pprof`
+- Release mode: set environment to `RELEASE=true` or use `-ldflags` during build
