@@ -48,10 +48,10 @@ export class AppComponent {
             document.location.reload();
           }
         } catch (err) {
-          console.error("Failed to check for updates:", err);
+          // Update check failed silently
         }
       } else {
-        console.warn("Service Worker is not enabled.");
+        // Service Worker not enabled
       }
     });
   }

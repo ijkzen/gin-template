@@ -44,7 +44,6 @@ export class WebsocketService {
 
     // 监听连接打开事件
     this.socket.onopen = () => {
-      console.log("WebSocket连接已打开");
       this.connected = true;
     };
 
@@ -53,21 +52,18 @@ export class WebsocketService {
       try {
         this.connected = true;
         let response: SocketData<any> = JSON.parse(event.data);
-        console.log("收到WebSocket消息:", response);
       } catch (error) {
-        console.error("解析WebSocket消息失败:", error);
+        // Parse error silently
       }
     };
 
     // 监听错误事件
     this.socket.onerror = (error) => {
       this.connected = false;
-      console.error("WebSocket错误:", error);
     };
 
     // 监听关闭事件
     this.socket.onclose = () => {
-      console.log("WebSocket连接已关闭，尝试重新连接...");
       this.connected = false;
       // 5秒后尝试重新连接
       setTimeout(() => this.connect(), 5000);
@@ -91,8 +87,7 @@ export class WebsocketService {
   sendMessage(message: SocketData<any>): void {
     if (this.socket && this.connected) {
       this.socket.send(JSON.stringify(message));
-    } else {
-      console.warn("WebSocket未连接，无法发送消息");
     }
+    // Silently ignore if not connected
   }
 }
