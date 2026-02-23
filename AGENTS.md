@@ -4,6 +4,12 @@
 Go backend template using Gin framework with SQLite/GORM, JWT authentication, WebSocket support, and Zap logging.
 Frontend (Angular) located in `web/` directory, compiled to `static/`.
 
+## Project Metrics
+- **Files:** 23 Go files
+- **Lines:** ~959 lines of Go
+- **Max Depth:** 6 levels
+- **Go Version:** 1.26.0 (toolchain: 1.24.4)
+
 ## Build & Run Commands
 
 ### Build
@@ -184,3 +190,21 @@ web/           # Angular frontend source
 - Statsviz enabled for profiling at `/debug/statsviz`
 - Pprof enabled for performance profiling at `/debug/pprof`
 - Release mode: set environment to `RELEASE=true` or use `-ldflags` during build
+
+## Testing
+- **No test files exist** - project has no `*_test.go` files
+- Run: `go test ./...` (returns success but runs nothing)
+- To add tests: create `foo_test.go` alongside packages
+- Recommend: add `testify` for assertions, create `testutil` package for DB setup
+
+## Missing Configurations (Recommended)
+- **No .golangci.yml** - Add for linting enforcement
+- **No .editorconfig** - Add for editor consistency
+- **No GitHub Actions** - Consider adding CI workflow
+- **No Makefile/Docker** - Optional for deployment
+
+## Structure Deviations (Idiomatic Go)
+1. `main.go` at root instead of `cmd/gin-template/main.go`
+2. No `cmd/`, `internal/`, or `pkg/` directories
+3. Package `bean/` instead of idiomatic `model/` or `dto/`
+4. All code at root level without standard Go boundaries
