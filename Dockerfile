@@ -13,9 +13,9 @@ RUN cd /build/web && \
     cp -r /build/web/dist/browser/* /build/static/front && \
     cd /build && \
     apk add --no-cache gcc musl-dev && \
-    CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -a -tags netgo -ldflags '-s -w -extldflags "-static"' -o main . && \
+    CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -trimpath -tags netgo -ldflags '-s -w' -o main . && \
     apk add --no-cache upx && \
-    upx --lzma main
+    upx --lzma --best main
 
 FROM 192.168.31.100:2002/ijkzen/base:v0.8
 
